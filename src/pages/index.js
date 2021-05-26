@@ -1,13 +1,22 @@
+import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
-import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 
 import { commerce } from "../lib/commerce";
 
+import { cartItems } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
+
 const Home = ({ products }) => {
+  const dispatch = useDispatch();
+
+  useEffect(async () => {
+    const cartRes = await commerce.cart.retrieve();
+    dispatch(cartItems(cartRes));
+  }, []);
+
   return (
     <div className="bg-gray-100">
-      <Header />
       <main className="mx-auto max-w-screen-xl">
         <Banner />
         <ProductFeed products={products} />

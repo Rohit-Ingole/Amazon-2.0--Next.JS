@@ -12,11 +12,11 @@ const ProductFeed = ({ products }) => {
         className="md:col-span-full"
       />
       <div className="md:col-span-2">
-        {products.slice(5, 6).map((product) => (
+        {products.slice(4, 5).map((product) => (
           <Product product={product} key={product.id} />
         ))}
       </div>
-      {products.slice(7, products.length).map((product) => (
+      {products.slice(5, products.length).map((product) => (
         <Product product={product} key={product.id} />
       ))}
     </div>

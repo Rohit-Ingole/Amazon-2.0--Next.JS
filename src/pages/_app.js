@@ -1,8 +1,10 @@
 import Head from "next/head";
 import "../styles/globals.css";
 
+import { Provider as SessionProvider } from "next-auth/client";
 import { store } from "../app/store";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
+import Header from "../components/Header";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,9 +13,12 @@ function MyApp({ Component, pageProps }) {
         <title>Amazon 2.0</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <ReduxProvider store={store}>
+        <SessionProvider session={pageProps.session}>
+          <Header />
+          <Component {...pageProps} />
+        </SessionProvider>
+      </ReduxProvider>
     </>
   );
 }

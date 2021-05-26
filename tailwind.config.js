@@ -13,6 +13,12 @@ module.exports = {
           DEFAULT: "#131921",
         },
       },
+      height: {
+        card: "520px",
+      },
+      width: {
+        button: "200px",
+      },
     },
   },
   variants: {

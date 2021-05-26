@@ -2,8 +2,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 
+import { cartItems } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { commerce } from "../lib/commerce";
+
 const MAX_RATING = 5;
-const MIN_RATING = 1;
+const MIN_RATING = 3;
 
 const Product = ({ product }) => {
   const [rating, setRating] = useState(
@@ -18,9 +22,15 @@ const Product = ({ product }) => {
     return str.replace(/(<([^>]+)>)/gi, "");
   };
 
-  console.log(product);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    dispatch(cartItems(item.cart));
+  };
+
   return (
-    <div className="relative flex flex-col m-5 bg-white z-30 p-10">
+    <div className="relative flex flex-col m-5 bg-white z-30 p-10 h-card">
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
         {product?.categories?.[0]?.name}
       </p>
@@ -35,7 +45,7 @@ const Product = ({ product }) => {
         {Array(rating)
           .fill()
           .map((_, index) => (
-            <StarIcon className="h-5 text-yellow-500" />
+            <StarIcon className="h-5 text-yellow-500" key={index} />
           ))}
       </div>
       <p className="text-xs my-2 line-clamp-2 font-semibold">
@@ -48,7 +58,12 @@ const Product = ({ product }) => {
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
       )}
-      <button className="mt-auto button">Add To Basket</button>
+      <button
+        className="mt-auto button"
+        onClick={() => handleAddToCart(product.id, 1)}
+      >
+        Add To Basket
+      </button>
     </div>
   );
 };
