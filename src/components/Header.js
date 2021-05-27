@@ -54,7 +54,7 @@ const Header = () => {
             </div>
             <div
               className="link flex items-center relative"
-              onClick={() => router.push("/checkout")}
+              onClick={() => router.push("/cart")}
             >
               <ShoppingCartIcon className="h-10 " />
               <p className="mt-2 font-extrabold md:text-sm hidden md:inline">

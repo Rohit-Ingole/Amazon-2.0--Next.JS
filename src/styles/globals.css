@@ -13,4 +13,11 @@
   .button {
     @apply p-2 text-xs md:text-sm bg-gradient-to-b from-yellow-200 to-yellow-400 border-yellow-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-yellow-500;
   }
+  .checkoutInput {
+    @apply outline-none border-2 border-gray-200 mx-3 h-12 mb-2 px-2;
+  }
+
+  .checkoutButton {
+    @apply rounded-md outline-none text-center cursor-pointer border-b-2 mx-3 mt-3 h-14 font-mono font-semibold text-xl;
+  }
 }

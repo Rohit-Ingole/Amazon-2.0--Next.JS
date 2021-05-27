@@ -15,6 +15,7 @@ module.exports = {
       },
       height: {
         card: "520px",
+        textarea: "93%",
       },
       width: {
         button: "200px",
