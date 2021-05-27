@@ -36,7 +36,6 @@ const PaymentForm = ({
       refreshCart();
     } catch (error) {
       setErrorMessage(error);
-      console.log(error);
     }
   };
 
@@ -53,10 +52,7 @@ const PaymentForm = ({
     });
 
     if (error) {
-      console.log("[error]", error);
     } else {
-      console.log(shippingData);
-
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: {

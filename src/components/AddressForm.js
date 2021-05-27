@@ -11,8 +11,6 @@ const AddressForm = ({ checkoutToken, setShippingData }) => {
   const onSubmit = (data) => {
     data.shippingOption = shippingOption;
     setShippingData(data);
-
-    console.log({ country: shippingCountry, subdivision: shippingSubdivision });
   };
 
   const [shippingCountries, setShippingCountries] = useState([]);

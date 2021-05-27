@@ -39,8 +39,6 @@ const Cart = () => {
                 : "Shopping Cart"}
             </h1>
 
-            {console.log(cart)}
-
             {cart?.line_items?.map((item) => (
               <CheckoutProduct item={item} key={item.id} />
             ))}
