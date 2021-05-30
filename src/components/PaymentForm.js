@@ -8,12 +8,6 @@ import { useState } from "react";
 import { commerce } from "../lib/commerce";
 import Review from "./Review";
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
-
-const refreshCart = async () => {
-  const newCart = await commerce.cart.refresh();
-};
-
 const PaymentForm = ({
   checkoutToken,
   shippingData,
@@ -22,6 +16,14 @@ const PaymentForm = ({
   setErrorMessage,
   setOrder,
 }) => {
+  const stripePromise = loadStripe(
+    "pk_test_51IhBXQSBTHVYIC9JAMU2mNNqUbJpAafIAkZnGmNibA8c2McioTgEGgON2WMoCwB1Tzl2DOYPajLQvtO1zhmYCk23005pRpo4gR"
+  );
+
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+  };
+
   const onCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
       const incomingOrder = await commerce.checkout.capture(
